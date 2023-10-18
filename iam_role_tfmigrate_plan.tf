@@ -5,13 +5,6 @@ resource "aws_iam_role" "tfmigrate_plan" {
   name                  = "GitHubActions_Terraform_${var.name}_tfmigrate_plan"
 }
 
-resource "aws_iam_role_policy_attachment" "tfmigrate_plan_delete_plan_file" {
-  # TODO Remove this policy because this isn't necessary from tfaction v0.6.10.
-  # https://github.com/suzuki-shunsuke/tfaction/pull/1175
-  role       = aws_iam_role.tfmigrate_plan.name
-  policy_arn = aws_iam_policy.delete_plan_file.arn
-}
-
 resource "aws_iam_role_policy_attachment" "tfmigrate_plan_read_tfmigrate_history" {
   role       = aws_iam_role.tfmigrate_plan.name
   policy_arn = aws_iam_policy.read_tfmigrate_history.arn
